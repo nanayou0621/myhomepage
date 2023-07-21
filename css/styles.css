@@ -2,6 +2,7 @@ body{
   margin: 0;
   font-family: M PLUS Rounded 1c Light, Courier, monospace;
 }
+
 /*ヘッダーsp */
 .pc-header{
   display: none;
@@ -12,6 +13,12 @@ body{
   display: flex;
   padding: 16px;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+  opacity: .8;
 }
 .sp-nav{
   margin-left: auto;
@@ -34,7 +41,7 @@ body{
   padding: 64px;
   opacity: 0;
   pointer-events: none;
-  transition:opacity .6s;
+  transition:opacity .8s;
   z-index: 1;
 }
 .overlay.show{
@@ -131,45 +138,89 @@ body{
     transform: none;
     opacity: 1;
   }
-  100% {
-    transform: translateY(20px);
-    opacity: 0;
-    pointer-events: none;
+ 100% {
+   transform: translateY(20px);
+   opacity: 0;
+   pointer-events: none;
     
   }
 }
-/* コンセプト sp */ 
-h2{
-  text-align: center;
-  font-size: 34px;
-  padding: 16px;
+/* 見出しの吹き出し */
+.sub-title{
+  position: relative;
+  display: inline-block;
+  margin: 3em 0 3em;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 3px #555;
+  box-sizing: border-box;
+  border-radius: 5px;
+  animation: move-y 2s infinite alternate ease-in-out;
+  display: inline-block;
 }
-.concept-container p{
+@keyframes move-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(10px);
+  }
+}
+.sub-title:before{
+  content: "";
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  margin-left: -15px;
+  border: 12px solid transparent;
+  border-top: 12px solid #FFF;
+  z-index: 2;
+}
+.sub-title:after{
+  content: "";
+  position: absolute;
+  bottom: -29px;
+  left: 50%;
+  margin-left: -17px;
+  border: 14px solid transparent;
+  border-top: 14px solid #555;
+  z-index: 1;
+}
+.sub-title h2{
   margin: 0;
+  padding: 0;
+} 
+/* コンセプト sp */ 
+ 
+.concept-center{
+  text-align: center;
+  background: #c9c3e6;
 }
 .concept-page{
   text-align: center;
-  margin: 32px;
-  background:#fff;
-  color: black;
+  padding: 16px;
 }
 .concept-page h3{
   font-size: 18px;
   text-align: left;
   font-family: A1 Gothic R;
-  border-bottom: 1px solid pink;
+  border-bottom: 1px solid #555;
+  color: #555;
 }
 .concept-page p{
   font-size: 14px;
   text-align: left;
-  padding-top: 16px;
   align-items: center;
- 
-  
+  margin: 0;
 }
 .concept-page img{
   width: 100%;
   height: 50%;
+  cursor: pointer;
 }
 .concept-page img:hover{
   opacity: 0.7;
@@ -179,7 +230,10 @@ h2{
 }
 
 /* サービス sp */
-
+.services-center{
+  text-align: center;
+  background: #fadfd8;
+}
 h2{
   text-align: center;
   font-size: 34px;
@@ -190,25 +244,27 @@ h2{
 }
 .services-page{
   text-align: center;
-  margin: 32px;
-  background:#fff;
-  color: black;
+  padding:16px;
+  height: fit-content;
 }
 .services-page img{
   width: 100%;
   height: 50%;
+  cursor: pointer;
 }
 .services-page h3{
   font-size: 18px;
   text-align: left;
   font-family: A1 Gothic R;
-  border-bottom: 1px solid pink;
+  border-bottom: 1px solid #555;
+  color: #555;
 }
 .services-page p{
   font-size: 14px;
   text-align: left;
   padding-top: 16px;
   align-items: center;
+  
 }
 .services-page img:hover{
   opacity: 0.7;
@@ -216,7 +272,80 @@ h2{
   transition: 1s;
   cursor: pointer;
 }
+/*ギャラリー  sp */
+.gallery-center{
+  text-align: center;
+  background: #e3f1f8;
+}
+.carousel{
+  width: 80%;
+  margin: 0 auto;
+}
+.gallery-container{
+  min-width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-container ul{
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  transition: transform .3s;
+}
+.gallery-container li{
+  height: 100%;
+  min-width: 100%;
+}
+.gallery-container img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.nav-button{
+  margin-top: 16px;
+  text-align: center;
+}
+.nav-button button + button{
+  margin-left: 8px;
+}
+.nav-button button{
+  border: none;
+  width: 16px;
+  height: 16px;
+  background: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+/* 流れる文字 sp */
+.line-container{
+  padding:16px;
+  background: #eeeeee;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.line-container p{
+  background: 50%/80%;
+  animation: move-around 20s linear infinite;
+}
+@keyframes move-around{
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 /* フッター sp*/
+.footer-container{
+  display: block;
+}
 footer{
   background: #F4F3DF;
   text-align: center;
@@ -296,6 +425,12 @@ footer li{
   display: flex;
   padding: 16px;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+  opacity: .8;
 }
 .pc-nav{
   margin-left: auto;
@@ -319,12 +454,23 @@ footer li{
 /* コンセプト pc */
 .concept-container{
   display: grid;
-  gap: 26px;
   grid-template-columns: repeat(3,minmax(260px,1fr));
-  margin-bottom: 50px;
   
 }
 /* サービス pc */
+.services-container{
+  display: grid;
+  gap: 26px;
+  grid-template-columns: repeat(2,minmax(260px,1fr));
+}
+/* ギャラリー pc */
+.gallery-container img{
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+    cursor: pointer;
+    object-position: 50% 100%;
+}
 /* フッターpc */
 .footer-container{
   display: flex;
@@ -333,7 +479,5 @@ footer li{
 }
 footer table{
   font-size: 16px;
-  width: 400px;
 }
-
-} 
+}

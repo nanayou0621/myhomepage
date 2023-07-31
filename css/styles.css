@@ -6,7 +6,6 @@ body{
 /*ヘッダーsp */
 .pc-header{
   display: none;
-
 }
 .sp-header{
   background:#3B4B5A;
@@ -449,6 +448,7 @@ footer li{
 .pc-nav a{
   color: white;
   text-decoration: none;
+
 }
 .pc-nav a:hover{
   opacity: 0.6;
